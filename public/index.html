@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>User Management</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainController">
+  <h1>User Management</h1>
+
+  <div class="tabs">
+    <button ng-click="changeTab(1)" ng-class="{ 'active': activeTab === 1 }">Create User</button>
+    <button ng-click="changeTab(2)" ng-class="{ 'active': activeTab === 2 }">Update User</button>
+    <button ng-click="changeTab(3)" ng-class="{ 'active': activeTab === 3 }">User Listing</button>
+    <button ng-click="changeTab(4)" ng-class="{ 'active': activeTab === 4 }">Delete User</button>
+    <button ng-click="changeTab(5)" ng-class="{ 'active': activeTab === 5 }">Find User</button>
+  </div>
+
+  <div class="tab-content" ng-show="activeTab === 1">
+    <h2>Create User</h2>
+    <form ng-submit="createUser()">
+      <label>First Name:</label>
+      <input type="text" ng-model="user.firstName" required>
+      <label>Last Name:</label>
+      <input type="text" ng-model="user.lastName" required>
+      <label>Email:</label>
+      <input type="email" ng-model="user.email" required>
+      <label>Phone Number:</label>
+      <input type="tel" ng-model="user.phoneNumber" required>
+      <label>Profile Image:</label>
+      <input type="file" file-model="user.profileImage" required>
+      <button type="submit">Create User</button>
+    </form>
+  </div>
+
+  <div class="tab-content" ng-show="activeTab === 2">
+    <h2>Update User</h2>
+    <form ng-submit="updateUser()">
+      <label>First Name:</label>
+      <input type="text" ng-model="user.firstName" required>
+      <label>Last Name:</label>
+      <input type="text" ng-model="user.lastName" required>
+      <label>Email:</label>
+      <input type="email" ng-model="user.email" required>
+      <label>Phone Number:</label>
+      <input type="tel" ng-model="user.phoneNumber" required>
+      <label>Profile Image:</label>
+      <input type="file" file-model="user.profileImage">
+      <button type="submit">Update User</button>
+    </form>
+  </div>
+
+  <div class="tab-content" ng-show="activeTab === 3">
+    <h2>User Listing</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in userList">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phoneNumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="tab-content" ng-show="activeTab === 4">
+  <h2>Delete User</h2>
+  <form ng-submit="deleteUser()">
+    <label>User ID:</label>
+    <input type="text" ng-model="userIdToDelete" required>
+    <button type="submit">Delete User</button>
+  </form>
+</div>
+<div class="tab-content" ng-show="activeTab === 5"> 
+  <h2>Find User</h2>
+  <form ng-submit="findUser()">
+    <label>User ID:</label>
+    <input type="text" ng-model="userIdToFind" required>
+    <button type="submit">Find User</button>
+  </form>
+  <div ng-show="userDetails">
+    <h3>User Details:</h3>
+    <p><strong>User ID:</strong>{{userDetails.id}}</p>
+    <p><strong>First Name:</strong>{{userDetails.firstName}}</p>
+    <p><strong>Last Name:</strong>{{userDetails.lastName}}</p>
+    <p><strong>Email:</strong>{{userDetails.email}}</p>
+    <p><strong>Phone Number:</strong>{{userDetails.phoneNumber}}</p>
+  </div>
+</div>
+
+ 
+</body>
+
+</html>
