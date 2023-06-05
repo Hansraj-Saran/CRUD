@@ -23,7 +23,7 @@ app.use(bodyparser.json());
 
 // MongoDB setup
 const mongoose = require('mongoose');
-const url = "mongodb+srv://hansrajsaran2601:Hansraj$7976@cluster0.780govk.mongodb.net/crud"
+const url = "mongodb+srv://hansrajsaran2601:<Password>@cluster0.780govk.mongodb.net/crud"
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("MongoDB Connected…");
   })
